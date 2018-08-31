@@ -152,3 +152,130 @@
         );
         }
     };
+
+// 11. Compose React Components
+
+    class Fruits extends React.Component {
+        constructor(props) {
+        super(props);
+        }
+        render() {
+        return (
+            <div>
+            <h2>Fruits:</h2>
+            { /* change code below this line */ }
+            <NonCitrus />
+            <Citrus />
+            { /* change code above this line */ }
+            </div>
+        );
+        }
+    };
+    
+    class TypesOfFood extends React.Component {
+        constructor(props) {
+        super(props);
+        }
+        render() {
+        return (
+            <div>
+            <h1>Types of Food:</h1>
+            { /* change code below this line */ }
+            <Fruits />
+            { /* change code above this line */ }
+            <Vegetables />
+            </div>
+        );
+        }
+    };
+
+// 12. Render a Class Component to the DOM
+
+    class TypesOfFood extends React.Component {
+        constructor(props) {
+        super(props);
+        }
+        render() {
+        return (
+            <div>
+            <h1>Types of Food:</h1>
+            {/* change code below this line */}
+            <Fruits />
+            <Vegetables />
+            {/* change code above this line */}
+            </div>
+        );
+        }
+    };
+    
+    // change code below this line
+    ReactDOM.render(<TypesOfFood/>, document.getElementById('challenge-node'))
+
+// 13. Write a React Component from Scratch
+
+    class MyComponent extends React.Component {
+        render() {
+        return(
+            <div>
+            <h1>My First React Component!</h1>
+            </div>
+        )
+        }
+    }
+    
+    ReactDOM.render(<MyComponent/>, document.getElementById('challenge-node'));
+
+// 14. Pass Props to a Stateless Functional Component
+
+    const CurrentDate = (props) => {
+        return (
+        <div>
+            { /* change code below this line */ }
+            <p>The current date is: {props.date}</p>
+            { /* change code above this line */ }
+        </div>
+        );
+    };
+    
+    class Calendar extends React.Component {
+        constructor(props) {
+        super(props);
+        }
+        render() {
+        return (
+            <div>
+            <h3>What date is it?</h3>
+            { /* change code below this line */ }
+            <CurrentDate date={Date()}/>
+            { /* change code above this line */ }
+            </div>
+        );
+        }
+    };
+
+// 15. Pass an Array as Props
+
+    const List= (props) => {
+        { /* change code below this line */ }
+        return <p>{props.tasks.join(', ')}</p>
+        { /* change code above this line */ }
+    };
+    
+    class ToDo extends React.Component {
+        constructor(props) {
+        super(props);
+        }
+        render() {
+        return (
+            <div>
+            <h1>To Do Lists</h1>
+            <h2>Today</h2>
+            { /* change code below this line */ }
+            <List tasks={['one', 'two']}/>
+            <h2>Tomorrow</h2>
+            <List tasks={['three', 'four', 'five']}/>
+            { /* change code above this line */ }
+            </div>
+        );
+        }
+    };

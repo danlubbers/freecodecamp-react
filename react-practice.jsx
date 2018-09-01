@@ -279,3 +279,127 @@
         );
         }
     };
+
+// 16. Use Default Props
+
+    const ShoppingCart = (props) => {
+        return (
+        <div>
+            <h1>Shopping Cart Component</h1>
+        </div>
+        )
+    };
+    // change code below this line
+    ShoppingCart.defaultProps = { items: 0};
+
+// 17. Override Default Props
+
+    const Items = (props) => {
+        return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+    }
+    
+    Items.defaultProps = {
+        quantity: 0
+    }
+    
+    class ShoppingCart extends React.Component {
+        constructor(props) {
+        super(props);
+        }
+        render() {
+        { /* change code below this line */ }
+        return <Items quantity={10}/>
+        { /* change code above this line */ }
+        }
+    };
+
+// 18.  Use PropTypes to Define the Props You Expect
+
+    const Items = (props) => {
+        return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+    };
+    
+    // change code below this line
+    Items.propTypes = {quantity: PropTypes.number.isRequired}
+    // change code above this line
+    
+    Items.defaultProps = {
+        quantity: 0
+    };
+    
+    class ShoppingCart extends React.Component {
+        constructor(props) {
+        super(props);
+        }
+        render() {
+        return <Items />
+        }
+    };
+
+// 19. Access Props Using this.props
+
+    class ReturnTempPassword extends React.Component {
+        constructor(props) {
+        super(props);
+    
+        }
+        render() {
+        return (
+            <div>
+                { /* change code below this line */ }
+                <p>Your temporary password is: <strong>{this.props.tempPassword}</strong></p>
+                { /* change code above this line */ }
+            </div>
+        );
+        }
+    };
+    
+    class ResetPassword extends React.Component {
+        constructor(props) {
+        super(props);
+    
+        }
+        render() {
+        return (
+            <div>
+                <h2>Reset Password</h2>
+                <h3>We've generated a new temporary password for you.</h3>
+                <h3>Please reset this password from your account settings ASAP.</h3>
+                { /* change code below this line */ }
+            <ReturnTempPassword tempPassword={'asdfghjk'} />
+                { /* change code above this line */ }
+            </div>
+        );
+        }
+    };
+
+// 20. Review Using Props with Stateless Functional Components
+
+    class CampSite extends React.Component {
+        constructor(props) {
+        super(props);
+        }
+        render() {
+        return (
+            <div>
+            <Camper name={'Camper'}/>
+            </div>
+        );
+        }
+    };
+    // change code below this line
+    class Camper extends React.Component {
+        constructor(props) {
+        super(props);
+        }
+        render() {
+        return (
+            <div>
+            <p>{this.props.name}</p>
+            </div>
+        )
+        }
+    }
+    
+    Camper.defaultProps = { name: 'CamperBot'};
+    Camper.propTypes = {name: PropTypes.string.isRequired};

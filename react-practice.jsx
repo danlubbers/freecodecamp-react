@@ -696,3 +696,185 @@
         );
         }
     };
+
+// 31. Pass a Callback as Props
+
+    class MyApp extends React.Component {
+        constructor(props) {
+        super(props);
+        this.state = {
+            inputValue: ''
+        }
+        this.handleChange = this.handleChange.bind(this);
+        }
+        handleChange(event) {
+        this.setState({
+            inputValue: event.target.value
+        });
+        }
+        render() {
+        return (
+            <div>
+            { /* change code below this line */ }
+            <GetInput input={this.state.inputValue} handleChange={this.handleChange}/>
+            <RenderInput input={this.state.inputValue}/>
+            { /* change code above this line */ }
+            </div>
+        );
+        }
+    };
+    
+    class GetInput extends React.Component {
+        constructor(props) {
+        super(props);
+        }
+        render() {
+        return (
+            <div>
+            <h3>Get Input:</h3>
+            <input
+                value={this.props.input}
+                onChange={this.props.handleChange}/>
+            </div>
+        );
+        }
+    };
+    
+    class RenderInput extends React.Component {
+        constructor(props) {
+        super(props);
+        }
+        render() {
+        return (
+            <div>
+            <h3>Input Render:</h3>
+            <p>{this.props.input}</p>
+            </div>
+        );
+        }
+    };
+
+// 32. Use the Lifecycle Method componentWillMount
+
+    class MyComponent extends React.Component {
+        constructor(props) {
+        super(props);
+        }
+        componentWillMount() {
+        // change code below this line
+        console.log(this.componentWillMount);
+        // change code above this line
+        }
+        render() {
+        return <div />
+        }
+    };
+
+// 33. Use the Lifecycle Method componentDidMount
+
+    class MyComponent extends React.Component {
+        constructor(props) {
+        super(props);
+        this.state = {
+            activeUsers: null
+        };
+        }
+        componentDidMount() {
+        setTimeout( () => {
+            this.setState({
+            activeUsers: 1273
+            });
+        }, 2500);
+        }
+        render() {
+        return (
+            <div>
+            <h1>Active Users: {this.state.activeUsers}{ /* change code here */ }</h1>
+            </div>
+        );
+        }
+    };
+
+// 34. Add Event Listeners
+
+    class MyComponent extends React.Component {
+        constructor(props) {
+        super(props);
+        this.state = {
+            message: ''
+        };
+        this.handleEnter = this.handleEnter.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
+        }
+        // change code below this line
+        componentDidMount() {
+        document.addEventListener('keydown', this.handleKeyPress);
+        }
+        componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleKeyPress);
+        }
+        // change code above this line
+        handleEnter() {
+        this.setState({
+            message: this.state.message + 'You pressed the enter key! '
+        });
+        }
+        handleKeyPress(event) {
+        if (event.keyCode === 13) {
+            this.handleEnter();
+        }
+        }
+        render() {
+        return (
+            <div>
+            <h1>{this.state.message}</h1>
+            </div>
+        );
+        }
+    };
+
+// 35. Manage Updates with Lifecycle Methods
+
+    class Dialog extends React.Component {
+        constructor(props) {
+        super(props);
+        }
+        componentWillUpdate() {
+        console.log('Component is about to update...');
+        }
+        // change code below this line
+    componentWillReceiveProps(nextProps) {
+        console.log(this.props)
+        console.log(nextProps(nextProps))
+    }
+    componentDidUpdate() {
+        console.log('Working statement')
+    }
+        // change code above this line
+        render() {
+        return <h1>{this.props.message}</h1>
+        }
+    };
+    
+    class Controller extends React.Component {
+        constructor(props) {
+        super(props);
+        this.state = {
+            message: 'First Message'
+        };
+        this.changeMessage = this.changeMessage.bind(this);
+        }
+        changeMessage() {
+        this.setState({
+            message: 'Second Message'
+        });
+        }
+        render() {
+        return (
+            <div>
+            <button onClick={this.changeMessage}>Update</button>
+            <Dialog message={this.state.message}/>
+            </div>
+        );
+        }
+    };
